@@ -45,4 +45,16 @@ sudo pacman --noconfirm --needed -S calcurse htop cmatrix cowsay powerline-fonts
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 
+# dotfiles
+echo "setting up dotfiles..."
+
+## clone dotfile repo
+git clone https://github.com/AxelBohm/dotfiles ./dotfiles
+
+## create symlinks
+# check gnu stow for managing links
+for dotfile in .dotfiles/*; do
+     ln -s "$dotfile" ".$(basename "$dotfile")"
+done
+
 
