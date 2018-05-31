@@ -13,7 +13,6 @@ https://github.com/AxelBohm/bootstrap_arch.git
 # make zsh the default shell
 chsh -s $(which zsh) # requires a restart to take action
 
-
 # oh-my-zsh
 # (check here what happens to the .zshr??? probably just do "rm .zshrc" afterwards?)
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
@@ -25,13 +24,14 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 
-
 # i3 wm
 echo "installing i3 wm..."
 sudo pacman -S i3-gaps
 
+
 ## cloning config file
 git clone https://github.com/AxelBohm/i3-config.git .config/i3""
+
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
 sudo pacman -S libxslt
