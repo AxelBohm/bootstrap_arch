@@ -73,3 +73,35 @@ pip install pytest-watch
 pip install numpy
 pip install pandas
 
+
+# calcurse
+sudo apt install libproxy-dev autopoint asciidoc
+pip install httplib2 # after installing python
+
+git clone https://github.com/lfos/calcurse.git
+cd calcurse
+./autogen
+./configure
+make
+sudo make install
+cd /.calcurse
+mkdir caldav
+cd
+echo '[General]
+Binary = calcurse
+Hostname = dav.fruux.com
+Path =
+AuthMethod = basic
+InsecureSSL = Yes
+DryRun = No
+SyncFilter = cal
+Verbose = Yes
+[Auth]
+Username =
+Password = ' > ~/.calcurse/caldav/config
+### go to https://fruux.com/sync/ to check for username and pwd
+### and path (without the https://dav.fruux.com/ part)
+calcurse-caldav --init="keep-remote"
+
+
+
