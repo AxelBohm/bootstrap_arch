@@ -98,10 +98,22 @@ SyncFilter = cal
 Verbose = Yes
 [Auth]
 Username =
-Password = ' > ~/.calcurse/caldav/config
+Password = ' > ~/.calcurse/caldav/config_cal
+echo '[General]
+Binary = calcurse
+Hostname = dav.fruux.com
+Path =
+AuthMethod = basic
+InsecureSSL = Yes
+DryRun = No
+SyncFilter = todo
+Verbose = Yes
+[Auth]
+Username =
+Password = ' > ~/.calcurse/caldav/config_todo
 ### go to https://fruux.com/sync/ to check for username and pwd
 ### and path (without the https://dav.fruux.com/ part)
-calcurse-caldav --init="keep-remote"
-
+calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
+calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 
 
