@@ -36,9 +36,11 @@ echo "setting up dotfiles..."
 git clone https://github.com/AxelBohm/dotfiles ./dotfiles
 
 ## create symlinks
-# check gnu stow for managing links
-for dotfile in .dotfiles/*; do
-     ln -s "$dotfile" ".$(basename "$dotfile")"
+sudo pacman -S stow
+
+### stow all the directories
+for dotfile in .dotfiles/*/; do
+     stow "$(basename "$dotfile")"
 done
 
 
