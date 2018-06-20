@@ -9,8 +9,8 @@ https://github.com/AxelBohm/bootstrap_arch.git
 
 
 
-# usually zsh is already installed?
-# make zsh the default shell
+# zsh
+## usually zsh is already installed?
 chsh -s $(which zsh) # requires a restart to take action
 
 # oh-my-zsh
