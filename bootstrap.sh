@@ -1,5 +1,5 @@
 # set up arch machine
-# run this via wget..
+# run this via wget/curl ?
 https://github.com/AxelBohm/bootstrap_arch.git
 # don't forget during the installation process to install:
 # base base-devel vim
