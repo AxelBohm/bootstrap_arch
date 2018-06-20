@@ -19,9 +19,11 @@ sudo pacman -S i3-gaps
 
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
+echo "installing dropbox..."
 sudo pacman -S libxslt
 wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 .dropbox-dist/dropboxd
+
 
 # random stuff
 sudo pacman --noconfirm --needed -S calcurse htop cmatrix cowsay powerline-fonts
@@ -57,6 +59,7 @@ pip install pandas
 
 
 # calcurse
+echo "installing calcurse..."
 sudo apt install libproxy-dev autopoint asciidoc
 pip install httplib2 # after installing python
 
