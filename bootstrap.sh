@@ -7,7 +7,8 @@ https://github.com/AxelBohm/bootstrap_arch.git
 # wget git
 # xorg lxdm
 
-
+# install a font (monospace)
+sudo pacman --noconfirm --needed -S ttf-dejavu
 
 # zsh
 ## usually zsh is already installed?
