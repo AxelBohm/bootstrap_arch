@@ -30,7 +30,9 @@ wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts zathura sc-im ranger texlive-full
 
 
+########################################
 # dotfiles
+########################################
 echo "setting up dotfiles..."
 
 ## clone dotfile repo
@@ -45,7 +47,18 @@ for dotfile in .dotfiles/*/; do
 done
 
 
+########################################
+# suckless terminal
+########################################
+echo "compile st..."
+git clone https://github.com/AxelBohm/st.git
+cd st
+sudo make clean install
+
+
+########################################
 # python
+########################################
 echo "python setup..."
 ## miniconda
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
@@ -60,8 +73,9 @@ pip install pytest-watch
 pip install numpy
 pip install pandas
 
-
+########################################
 # calcurse
+########################################
 echo "installing calcurse..."
 sudo apt install libproxy-dev autopoint asciidoc
 pip install httplib2 # after installing python
