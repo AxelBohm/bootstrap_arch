@@ -60,6 +60,9 @@ pip install pytest-watch
 pip install numpy
 pip install pandas
 
+## polybar dependency
+conda install -c conda-forge xorg-xcb-proto
+
 
 # calcurse
 echo "installing calcurse..."
