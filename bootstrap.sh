@@ -2,7 +2,7 @@
 # run this via wget/curl ?
 https://github.com/AxelBohm/bootstrap_arch.git
 # don't forget during the installation process to install:
-# base base-devel vim
+# base base-devel gvim
 # dbus NetworkManager dialog nmtui wicd wicd-gtk
 # wget git
 # xorg lxdm
@@ -27,7 +27,7 @@ wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
 
 # random stuff
-sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts zathura sc-im ranger texlive-full
+sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts zathura sc-im ranger texlive-full ranger
 
 
 ########################################
@@ -73,6 +73,10 @@ pip install pytest-watch
 pip install numpy
 pip install pandas
 
+## polybar dependency
+conda install -c conda-forge xorg-xcb-proto
+
+
 ########################################
 # calcurse
 ########################################
@@ -115,6 +119,8 @@ Username =
 Password = ' > ~/.calcurse/caldav/config_todo
 ### go to https://fruux.com/sync/ to check for username and pwd
 ### and path (without the https://dav.fruux.com/ part)
+# for some reason caldav-calcurse had #!/usr/bin/python3 as first line should be #!/usr/bin/env python3 to work with conda?!?!
+cd .calcurse/caldav
 calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
 calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 
