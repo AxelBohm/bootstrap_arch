@@ -129,10 +129,6 @@ calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 # Franz
 ########################################
 echo "installing franz..."
-if [ ! -d "$Franz" ]; then
-  wget https://github.com/meetfranz/franz-app/releases/download/4.0.4/Franz-linux-x64-4.0.4.tgz
-  ls -l Franz-linux-x64-4.0.4.tgz
-  mkdir Franz
-  tar -xzvf Franz-linux-x64-4.0.4.tgz -C Franz/
-  rm Franz-linux-x64-4.0.4.tgz
-fi
+#git clone https://aur.archlinux.org/franz-bin.git
+# cd franz-bin
+# mkepkg -si
