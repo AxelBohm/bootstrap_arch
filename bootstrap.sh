@@ -2,7 +2,7 @@
 # run this via wget/curl ?
 https://github.com/AxelBohm/bootstrap_arch.git
 # don't forget during the installation process to install:
-# base base-devel vim
+# base base-devel gvim
 # dbus NetworkManager dialog nmtui wicd wicd-gtk
 # wget git
 # xorg lxdm
