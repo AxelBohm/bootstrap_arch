@@ -27,7 +27,10 @@ wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
 
 # random stuff
-sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts zathura sc-im ranger texlive-full ranger
+sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts sc-im ranger texlive-full ranger
+
+# zathura
+sudo pacman --noconfirm --needed -S zathura zathura-pdf-mupdf
 
 
 ########################################
