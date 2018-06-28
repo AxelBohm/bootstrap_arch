@@ -119,6 +119,8 @@ Username =
 Password = ' > ~/.calcurse/caldav/config_todo
 ### go to https://fruux.com/sync/ to check for username and pwd
 ### and path (without the https://dav.fruux.com/ part)
+# for some reason caldav-calcurse had #!/usr/bin/python3 as first line should be #!/usr/bin/env python3 to work with conda?!?!
+cd .calcurse/caldav
 calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
 calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 
