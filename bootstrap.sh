@@ -128,10 +128,22 @@ calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
 calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 
 
+# music
+sudo pacman -S libmpdclient mpd
+
+# mail
+sudo pacman -S neomutt dialog offlineimap mpv msmtp
+
 ########################################
-# Franz
+# AUR
 ########################################
 echo "installing franz..."
 #git clone https://aur.archlinux.org/franz-bin.git
 # cd franz-bin
 # mkepkg -si
+
+# polybar
+# git clone https://aur.archlinux.org/polybar.git
+## siji font for polybar glyphs
+# git clone https://aur.archlinux.org/siji-git.git
+
