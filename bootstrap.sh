@@ -129,10 +129,10 @@ calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 
 
 # music
-sudo pacman -S libmpdclient mpd
+sudo pacman -S --noconfirm --needed libmpdclient mpd
 
 # mail
-sudo pacman -S neomutt dialog offlineimap mpv msmtp
+sudo pacman -S neomutt dialog offlineimap mpv msmtp w3m
 
 ########################################
 # AUR
