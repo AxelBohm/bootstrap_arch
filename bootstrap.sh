@@ -64,17 +64,17 @@ cd ~
 ########################################
 echo "python setup..."
 ## miniconda
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
-bash ~/miniconda.sh -b -p ~/miniconda
-rm ~/miniconda.sh
+sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
+sudo bash /opt/miniconda.sh -b -p /opt/miniconda
+sudo rm /opt/miniconda.sh
 
 ## modules
 echo "installing python modules..."
-conda install pip
-pip install pytest
-pip install pytest-watch
-pip install numpy
-pip install pandas
+sudo conda install -y pip
+sudo pip install pytest
+sudo pip install pytest-watch
+sudo pip install numpy
+sudo pip install pandas
 
 ## polybar dependency
 conda install -c conda-forge xorg-xcb-proto
@@ -85,7 +85,7 @@ conda install -c conda-forge xorg-xcb-proto
 ########################################
 echo "installing calcurse..."
 sudo apt install libproxy-dev autopoint asciidoc
-pip install httplib2 # after installing python
+sudo pip install httplib2 # after installing python
 
 git clone https://github.com/lfos/calcurse.git
 cd calcurse
