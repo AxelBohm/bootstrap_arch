@@ -54,10 +54,10 @@ done
 # suckless terminal
 ########################################
 echo "compile st..."
-git clone https://github.com/AxelBohm/st.git
-cd st
+git clone https://github.com/AxelBohm/st.git /opt
+cd /opt/st
 sudo make clean install
-
+cd ~
 
 ########################################
 # python
