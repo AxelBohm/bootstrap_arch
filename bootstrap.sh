@@ -79,6 +79,30 @@ sudo pip install pandas
 ## polybar dependency
 conda install -c conda-forge xorg-xcb-proto
 
+########################################
+# R
+########################################
+echo "installing R..."
+sudo pacman -S --no-confirm --needed r
+
+# for r-markdown
+sudo pacman -S --no-confirm --needed pandoc-citeproc
+
+# needed for gui to choose mirror to download packages from
+sudo pacman -S --no-confirm --needed tk
+
+# dependency for tidyverse
+sudo pacman -S --no-confirm --needed gcc-fortran
+
+# install R packages
+# currently only works by manually running
+# `install.packages('littler')`
+# and then
+# `ln -s R/x86_64-pc-linux-gnu-library/3.5/littler/bin/r /usr/local/bin/`
+#
+# install.R tidyverse
+# install.R plyr
+# install.R rmarkdown
 
 ########################################
 # calcurse
