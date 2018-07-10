@@ -100,6 +100,13 @@ sudo pacman -S --no-confirm --needed gcc-fortran
 # and then
 # `ln -s R/x86_64-pc-linux-gnu-library/3.5/littler/bin/r /usr/local/bin/`
 #
+# or
+# git clone https://aur.archlinux.org/littler.git
+# cd littler
+# makepkg -si
+# cd ~
+# rm -rf littler
+#
 # install.R tidyverse
 # install.R plyr
 # install.R rmarkdown
