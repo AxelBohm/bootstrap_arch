@@ -108,7 +108,6 @@ sudo pacman -S --no-confirm --needed gcc-fortran
 # rm -rf littler
 #
 # install.R tidyverse
-# install.R plyr
 # install.R rmarkdown
 
 ########################################
