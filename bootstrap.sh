@@ -164,6 +164,10 @@ sudo pacman -S --noconfirm --needed libmpdclient mpd
 # mail
 sudo pacman -S neomutt dialog offlineimap mpv msmtp w3m
 
+# cronjobs
+sudo pacman -S --noconfirm --needed cronie
+sudo systemctl enable cronie
+
 ########################################
 # AUR
 ########################################
