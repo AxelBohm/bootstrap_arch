@@ -38,7 +38,7 @@ sudo pacman --noconfirm --needed -S zathura zathura-pdf-mupdf
 echo "setting up dotfiles..."
 
 ## clone dotfile repo
-git clone https://github.com/AxelBohm/dotfiles ./dotfiles
+git clone https://github.com/AxelBohm/dotfiles .dotfiles
 
 ## create symlinks
 sudo pacman -S stow
