@@ -23,7 +23,6 @@ sudo pacman -S i3-gaps
 echo "installing dropbox..."
 sudo pacman -S libxslt
 wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
-.dropbox-dist/dropboxd
 
 
 # random stuff
