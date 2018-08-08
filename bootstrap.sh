@@ -176,6 +176,10 @@ sudo pacman -S neomutt dialog offlineimap mpv msmtp w3m
 sudo pacman -S --noconfirm --needed cronie
 sudo systemctl enable cronie
 
+# rss
+sudo pacman -S --no-confirm --needed newsboat
+
+
 ########################################
 # AUR
 ########################################
