@@ -50,6 +50,14 @@ done
 
 
 ########################################
+# vim
+########################################
+
+# installing YouCompleteMe
+vim +PluginInstall +qall
+/usr/bin/python ~/.vim/bundle/YouCompleteMe/install.py
+
+########################################
 # suckless terminal
 ########################################
 echo "compile st..."
@@ -77,6 +85,7 @@ sudo pip install pandas
 
 ## polybar dependency
 conda install -c conda-forge xorg-xcb-proto
+
 
 ########################################
 # R
