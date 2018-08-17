@@ -16,12 +16,12 @@ chsh -s $(which zsh) # requires a restart to take action
 
 # i3 wm
 echo "installing i3 wm..."
-sudo pacman -S i3-gaps
+sudo pacman --noconfirm --needed -S i3-gaps dmenu
 
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
 echo "installing dropbox..."
-sudo pacman -S libxslt
+sudo pacman --noconfirm --needed -S libxslt encfs
 wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
 
@@ -40,8 +40,8 @@ echo "setting up dotfiles..."
 ## clone dotfile repo
 git clone https://github.com/AxelBohm/dotfiles .dotfiles
 
-## create symlinks
-sudo pacman -S stow
+## for symlink management
+sudo pacman --noconfirm --needed -S stow
 
 ### stow all the directories
 for dotfile in .dotfiles/*/; do
@@ -50,41 +50,50 @@ done
 
 
 ########################################
-# vim
-########################################
-
-# installing YouCompleteMe
-vim +PluginInstall +qall
-/usr/bin/python ~/.vim/bundle/YouCompleteMe/install.py
-
-########################################
 # suckless terminal
 ########################################
 echo "compile st..."
-git clone https://github.com/AxelBohm/st.git /opt
-cd /opt/st
-sudo make clean install
+git clone https://github.com/AxelBohm/st.git /usr/local/src
+cd /usr/local/src/st
+sudo make
+sudo make install
 cd ~
 
 ########################################
 # python
 ########################################
 echo "python setup..."
+sudo pacman --noconfirm --needed -S python
+
 ## miniconda
-sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
-sudo bash /opt/miniconda.sh -b -p /opt/miniconda
-sudo rm /opt/miniconda.sh
+# sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
+# sudo bash /opt/miniconda.sh -b -p /opt/miniconda
+# sudo rm /opt/miniconda.sh
 
 ## modules
 echo "installing python modules..."
-sudo conda install -y pip
-sudo pip install pytest
-sudo pip install pytest-watch
-sudo pip install numpy
-sudo pip install pandas
+pip install --user pytest
+pip install --user pytest-watch
+pip install --user numpy
+
+## needed by vim-flake8
+pip install --user flake8
+
+pip install --user pipenv
 
 ## polybar dependency
+pip install --user xorg-xcb-proto
 conda install -c conda-forge xorg-xcb-proto
+
+########################################
+# vim
+########################################
+
+# install plugins via vundle
+vim +PluginInstall +qall
+
+# installing YouCompleteMe
+python ~/.vim/bundle/YouCompleteMe/install.py
 
 
 ########################################
@@ -122,14 +131,14 @@ sudo pacman -S --no-confirm --needed gcc-fortran
 # calcurse
 ########################################
 echo "installing calcurse..."
-sudo apt install libproxy-dev autopoint asciidoc
-sudo pip install httplib2 # after installing python
+sudo pacman -S libproxy-dev autopoint asciidoc
+pip install --user httplib2 # after installing python
 
-git clone https://github.com/lfos/calcurse.git
-cd calcurse
-./autogen
-./configure
-make
+git clone https://github.com/lfos/calcurse.git /usr/local/src
+cd /usr/local/src/calcurse
+sudo ./autogen
+sudo ./configure
+sudo make
 sudo make install
 cd /.calcurse
 mkdir caldav
@@ -166,6 +175,10 @@ calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
 calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 
 
+########################################
+# misc
+########################################
+
 # music
 sudo pacman -S --noconfirm --needed libmpdclient mpd
 
@@ -183,6 +196,12 @@ sudo pacman -S --no-confirm --needed newsboat
 ########################################
 # AUR
 ########################################
+echo "installing yay..."
+# # install yay
+# git clone https://aur.archlinux.org/yay.git
+# cd yay
+# makepkg -si
+
 echo "installing franz..."
 #git clone https://aur.archlinux.org/franz-bin.git
 # cd franz-bin
