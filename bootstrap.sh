@@ -53,10 +53,13 @@ done
 # suckless terminal
 ########################################
 echo "compile st..."
+
+# should already be installed but for some reason I was missing this at some point
+sudo pacman --noconfirm --needed -S libX11
+
 git clone https://github.com/AxelBohm/st.git /usr/local/src
 cd /usr/local/src/st
-sudo make
-sudo make install
+sudo make clean install
 cd ~
 
 ########################################
