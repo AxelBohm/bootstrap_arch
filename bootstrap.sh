@@ -26,7 +26,7 @@ wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
 
 # random stuff
-sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts sc-im ranger texlive-full
+sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts sc-im ranger texlive-full cmake
 
 # zathura
 sudo pacman --noconfirm --needed -S zathura zathura-pdf-mupdf
@@ -88,6 +88,9 @@ conda install -c conda-forge xorg-xcb-proto
 ########################################
 # vim
 ########################################
+
+# clone vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # install plugins via vundle
 vim +PluginInstall +qall
