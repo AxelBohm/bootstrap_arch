@@ -4,14 +4,25 @@ https://github.com/AxelBohm/bootstrap_arch.git
 # don't forget during the installation process to install:
 # base base-devel gvim
 # dbus NetworkManager dialog nmtui wicd wicd-gtk
-# wget git
 
+
+basic=(
+    wget
+    git
+    dmenu
+    ttf-dejavu
+)
+sudo pacman --noconfirm --needed -S ${basic[@]}
 
 # X
-sudo pacman --noconfirm --needed -S xorg-xinit xorg-server xorg-xev xorg-xrandr
+xorg=(
+    xorg-xinit
+    xorg-server
+    xorg-xev
+    xorg-xrandr
+)
+sudo pacman --noconfirm --needed -S ${xorg[@]}
 
-# install a font (monospace)
-sudo pacman --noconfirm --needed -S ttf-dejavu
 
 # zsh
 ## usually zsh is already installed?
@@ -19,20 +30,33 @@ chsh -s $(which zsh) # requires a restart to take action
 
 # i3 wm
 echo "installing i3 wm..."
-sudo pacman --noconfirm --needed -S i3-gaps dmenu
-
+sudo pacman --noconfirm --needed -S i3-gaps
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
 echo "installing dropbox..."
 sudo pacman --noconfirm --needed -S libxslt encfs
 wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
-
 # random stuff
-sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts sc-im ranger texlive-full cmake
+randon_stuff=(
+    htop
+    cmatrix
+    cowsay
+    powerline-fonts
+    sc-im
+    ranger
+    texlive-full
+    cmake
+)
+sudo pacman --noconfirm --needed -S ${randon_stuff[@]}
 
 # zathura
-sudo pacman --noconfirm --needed -S zathura zathura-pdf-mupdf
+zathura=(
+    zathura
+    zathura-pdf-mupdf
+)
+
+sudo pacman --noconfirm --needed -S ${zathura[@]}
 
 
 ########################################
@@ -56,17 +80,19 @@ done
 # suckless terminal
 ########################################
 echo "compile st..."
-git clone https://github.com/AxelBohm/st.git /usr/local/src
-cd /usr/local/src/st
-sudo make
+mkdir ~/src
+git clone https://github.com/AxelBohm/st.git ~/src/st
+cd ~/src/st
+make
 sudo make install
 cd ~
+
 
 ########################################
 # python
 ########################################
 echo "python setup..."
-sudo pacman --noconfirm --needed -S python
+sudo pacman --noconfirm --needed -S python-pip
 
 ## miniconda
 # sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
@@ -75,22 +101,25 @@ sudo pacman --noconfirm --needed -S python
 
 ## modules
 echo "installing python modules..."
-pip install --user pytest
-pip install --user pytest-watch
-pip install --user numpy
+python_modules=(
+    pytest
+    pytest-watch
+    numpy
+    pandas
+    flake8
+    pipenv
+)
+pip install --user ${python_modules[@]}
 
-## needed by vim-flake8
-pip install --user flake8
+# ## polybar dependency
+# pip install --user xorg-xcb-proto
+# conda install -c conda-forge xorg-xcb-proto
 
-pip install --user pipenv
-
-## polybar dependency
-pip install --user xorg-xcb-proto
-conda install -c conda-forge xorg-xcb-proto
 
 ########################################
 # vim
 ########################################
+echo "vim setup..."
 
 # clone vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -108,14 +137,12 @@ python ~/.vim/bundle/YouCompleteMe/install.py
 echo "installing R..."
 sudo pacman -S --no-confirm --needed r
 
-# for r-markdown
-sudo pacman -S --no-confirm --needed pandoc-citeproc
-
-# needed for gui to choose mirror to download packages from
-sudo pacman -S --no-confirm --needed tk
-
-# dependency for tidyverse
-sudo pacman -S --no-confirm --needed gcc-fortran
+r_related=(
+    pandoc-citeproc         # rmarkdown
+    tk                      # needed for gui to choose mirror to download packages from
+    gcc-fortran             # tidyverse
+)
+sudo pacman -S --no-confirm --needed ${r_related[@]}
 
 # install R packages
 # currently only works by manually running
@@ -132,6 +159,7 @@ sudo pacman -S --no-confirm --needed gcc-fortran
 #
 # install.R tidyverse
 # install.R rmarkdown
+
 
 ########################################
 # calcurse
@@ -186,10 +214,24 @@ calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 ########################################
 
 # music
-sudo pacman -S --noconfirm --needed libmpdclient mpd
+music=(
+    libmpdclient
+    mpd
+    ncmpcpp
+)
+sudo pacman -S --noconfirm --needed ${music[@]}
 
 # mail
-sudo pacman -S neomutt dialog offlineimap mpv msmtp w3m
+mail=(
+    neomutt
+    dialog
+    offlineimap
+    mpv
+    msmtp
+    w3m
+)
+sudo pacman -S --noconfirm --needed ${mail[@]}
+
 
 # cronjobs
 sudo pacman -S --noconfirm --needed cronie
