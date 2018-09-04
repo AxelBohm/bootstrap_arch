@@ -5,7 +5,10 @@ https://github.com/AxelBohm/bootstrap_arch.git
 # base base-devel gvim
 # dbus NetworkManager dialog nmtui wicd wicd-gtk
 # wget git
-# xorg lxdm
+
+
+# X
+sudo pacman --noconfirm --needed -S xorg-xinit xorg-server xorg-xev xorg-xrandr
 
 # install a font (monospace)
 sudo pacman --noconfirm --needed -S ttf-dejavu
