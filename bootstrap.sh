@@ -11,6 +11,8 @@ basic=(
     git
     dmenu
     ttf-dejavu
+    cmake
+    tmux
 )
 sudo pacman --noconfirm --needed -S ${basic[@]}
 
@@ -27,10 +29,9 @@ sudo pacman --noconfirm --needed -S ${xorg[@]}
 # zsh
 ## usually zsh is already installed?
 chsh -s $(which zsh) # requires a restart to take action
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# i3 wm
-echo "installing i3 wm..."
-sudo pacman --noconfirm --needed -S i3-gaps
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
 echo "installing dropbox..."
@@ -46,7 +47,6 @@ randon_stuff=(
     sc-im
     ranger
     texlive-full
-    cmake
 )
 sudo pacman --noconfirm --needed -S ${randon_stuff[@]}
 
@@ -57,6 +57,13 @@ zathura=(
 )
 
 sudo pacman --noconfirm --needed -S ${zathura[@]}
+
+
+########################################
+# i3 wm
+########################################
+echo "installing i3 wm..."
+sudo pacman --noconfirm --needed -S i3-gaps i3-lock
 
 
 ########################################
