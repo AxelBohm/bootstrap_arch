@@ -66,7 +66,7 @@ cd ~
 # python
 ########################################
 echo "python setup..."
-sudo pacman --noconfirm --needed -S python
+sudo pacman --noconfirm --needed -S python-pip
 
 ## miniconda
 # sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
@@ -78,11 +78,20 @@ echo "installing python modules..."
 pip install --user pytest
 pip install --user pytest-watch
 pip install --user numpy
+pip install --user pandas
+pip install --user unidecode
+pip install --user pipenv
+
+## dependency quickswitch
+pip install --user unidecode
 
 ## needed by vim-flake8
 pip install --user flake8
 
-pip install --user pipenv
+## vimscript linting
+pip install --user vim-vint
+
+
 
 ## polybar dependency
 pip install --user xorg-xcb-proto
@@ -129,6 +138,7 @@ sudo pacman -S --no-confirm --needed gcc-fortran
 #
 # install.R tidyverse
 # install.R rmarkdown
+# install.R lintr
 
 ########################################
 # calcurse
@@ -214,4 +224,6 @@ echo "installing franz..."
 # git clone https://aur.archlinux.org/polybar.git
 ## siji font for polybar glyphs
 # git clone https://aur.archlinux.org/siji-git.git
+
+yay -S quickswitch-i3
 
