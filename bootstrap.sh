@@ -4,19 +4,33 @@ https://github.com/AxelBohm/bootstrap_arch.git
 # don't forget during the installation process to install:
 # base base-devel gvim
 # dbus NetworkManager dialog nmtui wicd wicd-gtk
-# wget git
-# xorg lxdm
 
-# install a font (monospace)
-sudo pacman --noconfirm --needed -S ttf-dejavu
+
+basic=(
+    wget
+    git
+    dmenu
+    ttf-dejavu
+    cmake
+    tmux
+)
+sudo pacman --noconfirm --needed -S ${basic[@]}
+
+# X
+xorg=(
+    xorg-xinit
+    xorg-server
+    xorg-xev
+    xorg-xrandr
+)
+sudo pacman --noconfirm --needed -S ${xorg[@]}
+
 
 # zsh
 ## usually zsh is already installed?
 chsh -s $(which zsh) # requires a restart to take action
-
-# i3 wm
-echo "installing i3 wm..."
-sudo pacman --noconfirm --needed -S i3-gaps dmenu
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
@@ -24,12 +38,32 @@ echo "installing dropbox..."
 sudo pacman --noconfirm --needed -S libxslt encfs
 wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
-
 # random stuff
-sudo pacman --noconfirm --needed -S  htop cmatrix cowsay powerline-fonts sc-im ranger texlive-full
+randon_stuff=(
+    htop
+    cmatrix
+    cowsay
+    powerline-fonts
+    sc-im
+    ranger
+    texlive-full
+)
+sudo pacman --noconfirm --needed -S ${randon_stuff[@]}
 
 # zathura
-sudo pacman --noconfirm --needed -S zathura zathura-pdf-mupdf
+zathura=(
+    zathura
+    zathura-pdf-mupdf
+)
+
+sudo pacman --noconfirm --needed -S ${zathura[@]}
+
+
+########################################
+# i3 wm
+########################################
+echo "installing i3 wm..."
+sudo pacman --noconfirm --needed -S i3-gaps i3-lock
 
 
 ########################################
@@ -57,10 +91,13 @@ echo "compile st..."
 # should already be installed but for some reason I was missing this at some point
 sudo pacman --noconfirm --needed -S libX11
 
-git clone https://github.com/AxelBohm/st.git /usr/local/src
-cd /usr/local/src/st
+mkdir ~/src
+git clone https://github.com/AxelBohm/st.git ~/src/st
+cd ~/src/st
+make
 sudo make clean install
 cd ~
+
 
 ########################################
 # python
@@ -75,31 +112,31 @@ sudo pacman --noconfirm --needed -S python-pip
 
 ## modules
 echo "installing python modules..."
-pip install --user pytest
-pip install --user pytest-watch
-pip install --user numpy
-pip install --user pandas
-pip install --user unidecode
-pip install --user pipenv
 
-## dependency quickswitch
-pip install --user unidecode
+python_modules=(
+    pytest
+    pytest-watch
+    numpy
+    pandas
+    flake8
+    pipenv
+    vim-vint            # vimscript linting
+    unidecode           # quickswitch dependency
+)
+pip install --user ${python_modules[@]}
 
-## needed by vim-flake8
-pip install --user flake8
+# ## polybar dependency
+# pip install --user xorg-xcb-proto
+# conda install -c conda-forge xorg-xcb-proto
 
-## vimscript linting
-pip install --user vim-vint
-
-
-
-## polybar dependency
-pip install --user xorg-xcb-proto
-conda install -c conda-forge xorg-xcb-proto
 
 ########################################
 # vim
 ########################################
+echo "vim setup..."
+
+# clone vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # install plugins via vundle
 vim +PluginInstall +qall
@@ -112,16 +149,15 @@ python ~/.vim/bundle/YouCompleteMe/install.py
 # R
 ########################################
 echo "installing R..."
+
 sudo pacman -S --no-confirm --needed r
 
-# for r-markdown
-sudo pacman -S --no-confirm --needed pandoc-citeproc
-
-# needed for gui to choose mirror to download packages from
-sudo pacman -S --no-confirm --needed tk
-
-# dependency for tidyverse
-sudo pacman -S --no-confirm --needed gcc-fortran
+r_related=(
+    pandoc-citeproc         # rmarkdown
+    tk                      # needed for gui to choose mirror to download packages from
+    gcc-fortran             # tidyverse
+)
+sudo pacman -S --no-confirm --needed ${r_related[@]}
 
 # install R packages
 # currently only works by manually running
@@ -139,6 +175,7 @@ sudo pacman -S --no-confirm --needed gcc-fortran
 # install.R tidyverse
 # install.R rmarkdown
 # install.R lintr
+
 
 ########################################
 # calcurse
@@ -193,10 +230,24 @@ calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
 ########################################
 
 # music
-sudo pacman -S --noconfirm --needed libmpdclient mpd
+music=(
+    libmpdclient
+    mpd
+    ncmpcpp
+)
+sudo pacman -S --noconfirm --needed ${music[@]}
 
 # mail
-sudo pacman -S neomutt dialog offlineimap mpv msmtp w3m
+mail=(
+    neomutt
+    dialog
+    offlineimap
+    mpv
+    msmtp
+    w3m
+)
+sudo pacman -S --noconfirm --needed ${mail[@]}
+
 
 # cronjobs
 sudo pacman -S --noconfirm --needed cronie
