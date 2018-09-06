@@ -125,6 +125,11 @@ python_modules=(
 )
 pip install --user ${python_modules[@]}
 
+echo "installing ODL from github..."
+git clone https://github.com/odlgroup/odl.git ~/.local/lib/python3.7/site-packages/odl
+cd ~/.local/lib/python3.7/site-packages/odl
+pip install --user -e .
+
 # ## polybar dependency
 # pip install --user xorg-xcb-proto
 # conda install -c conda-forge xorg-xcb-proto
