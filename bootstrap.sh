@@ -270,20 +270,22 @@ sudo pacman -S --no-confirm --needed newsboat
 # AUR
 ########################################
 echo "installing yay..."
-# # install yay
-# git clone https://aur.archlinux.org/yay.git
-# cd yay
-# makepkg -si
 
-echo "installing franz..."
-#git clone https://aur.archlinux.org/franz-bin.git
-# cd franz-bin
-# mkepkg -si
+# dependencies
+sudo pacman -S --no-confirm --needed go
 
-# polybar
-# git clone https://aur.archlinux.org/polybar.git
-## siji font for polybar glyphs
-# git clone https://aur.archlinux.org/siji-git.git
+# install yay
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
 
-yay -S quickswitch-i3
-
+AUR_packages=(
+    rstudio-desktop-bin
+    littler                 # cmdline pip for R
+    rambox                  # messaging
+    telegram-cli-git
+    i3lock-color            # needed for betterlockscreen
+    polybar
+    siji-git                # glyphs for polybar
+)
+sudo yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
