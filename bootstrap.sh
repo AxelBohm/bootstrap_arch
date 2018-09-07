@@ -43,10 +43,14 @@ randon_stuff=(
     htop
     cmatrix
     cowsay
+    neofetch
     powerline-fonts
     sc-im
     ranger
     texlive-full
+    rofi
+    calibre             # ebook management
+    imagemagick
 )
 sudo pacman --noconfirm --needed -S ${randon_stuff[@]}
 
