@@ -111,6 +111,18 @@ cd ~
 
 
 ########################################
+# dwm
+########################################
+echo "compile dwm..."
+
+git clone https://github.com/AxelBohm/dwm.git ~/src/dwm
+cd ~/src/dwm
+make
+sudo make clean install
+cd ~
+
+
+########################################
 # python
 ########################################
 echo "python setup..."
