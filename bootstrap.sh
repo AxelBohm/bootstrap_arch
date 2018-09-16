@@ -26,11 +26,6 @@ xorg=(
 sudo pacman --noconfirm --needed -S ${xorg[@]}
 
 
-# zsh
-## usually zsh is already installed?
-chsh -s $(which zsh) # requires a restart to take action
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
@@ -85,6 +80,18 @@ sudo pacman --noconfirm --needed -S stow
 for dotfile in .dotfiles/*/; do
      stow "$(basename "$dotfile")"
 done
+
+
+########################################
+# zsh
+########################################
+## usually zsh is already installed?
+chsh -s $(which zsh) # requires a restart to take action
+
+# clone zsh plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 
 ########################################
