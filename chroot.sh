@@ -15,9 +15,6 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 # bootloader
 pacman --noconfirm --needed -S grub && grub-install --target=i386-pc /dev/sda && grub-mkconfig -o /boot/grub/grub.cfg
 
-# set root password
-echo 'set root password:..'
-passwd
 
 ###################
 username='xel'
@@ -32,6 +29,8 @@ curl \
   > install_packages.sh \
   && bash install_packages.sh
 
+echo 'set root password:'
+passwd
 
 echo 'set user password:...'
 passwd $username
