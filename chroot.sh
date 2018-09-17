@@ -33,3 +33,5 @@ passwd
 
 echo 'set user password:...'
 passwd $username
+
+exit
