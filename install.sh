@@ -7,11 +7,11 @@
 
 SIZE_SWAP=4
 SIZE_ROOT=30
-HOSTNAME="TP"
 TIMEZONE="Europe/Vienna"
 DISK="/dev/sda"
 
-# read -r -p "Enter username:" username
+read -r -p "Enter username:" username
+read -r -p "Enter hostname:" hostname
 
 #####################
 # START
@@ -66,11 +66,12 @@ pacstrap /mnt base base-devel gvim
 # -U means use uuID
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# write timezone file to user
+# write information to /mnt so it can be used after chrooting
 $TIMEZONE > /mnt/timezone.tmp
+$username > /mnt/username.tmp
 
 # set hostname
-echo $HOSTNAME >> /mnt/etc/hostname
+echo $hostname >> /mnt/etc/hostname
 
 
 

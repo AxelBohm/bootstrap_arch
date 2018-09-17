@@ -17,7 +17,7 @@ pacman --noconfirm --needed -S grub && grub-install --target=i386-pc /dev/sda &&
 
 
 ###################
-username='xel'
+username=$(cat username.tmp)
 useradd -m -g wheel -s /bin/bash $username
 
 # uncomment the line %wheel ALL=(ALL) ALL in sudoers file
