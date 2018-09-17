@@ -27,7 +27,7 @@ echo 'install packages...'
 curl \
   https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/install_packages.sh \
   > install_packages.sh \
-  && bash install_packages.sh
+  && bash install_packages.sh $username
 
 echo 'set root password:'
 passwd
