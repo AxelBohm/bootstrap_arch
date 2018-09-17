@@ -19,15 +19,12 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 pacman --noconfirm --needed -S grub && grub-install --target=i386-pc /dev/sda && grub-mkconfig -o /boot/grub/grub.cfg
 
 # set root password
+echo 'set root password:..'
 passwd
 
 ###################
-# SETTING UP USER #
-###################
-read -r -p "Enter username:" username
-
-useradd -m -g wheel -s /bin/bash $name
-passwd $username
+username='xel'
+useradd -m -g wheel -s /bin/bash $username
 
 # uncomment the line %wheel ALL=(ALL) ALL in sudoers file
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
@@ -36,5 +33,8 @@ curl \
   https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/install_packages.sh \
   && bash install_packages.sh
 
+
+echo 'set user password:...'
+passwd $username
 
 exit
