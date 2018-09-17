@@ -72,8 +72,8 @@ pacstrap /mnt base base-devel gvim
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # write information to /mnt so it can be used after chrooting
-$TIMEZONE > /mnt/timezone.tmp
-$username > /mnt/username.tmp
+echo $TIMEZONE > /mnt/timezone.tmp
+echo $username > /mnt/username.tmp
 
 # set hostname
 echo $hostname >> /mnt/etc/hostname
