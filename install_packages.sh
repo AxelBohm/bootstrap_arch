@@ -1,10 +1,10 @@
 # set up arch machine
-# run this via wget/curl ?
-https://github.com/AxelBohm/bootstrap_arch.git
 # don't forget during the installation process to install:
-# base base-devel gvim
 # dbus NetworkManager dialog nmtui wicd wicd-gtk
 
+username=$1
+
+cd /home/$username/
 
 basic=(
     wget
@@ -14,7 +14,7 @@ basic=(
     cmake
     tmux
 )
-sudo pacman --noconfirm --needed -S ${basic[@]}
+pacman --noconfirm --needed -S ${basic[@]}
 
 # X
 xorg=(
@@ -23,15 +23,15 @@ xorg=(
     xorg-xev
     xorg-xrandr
 )
-sudo pacman --noconfirm --needed -S ${xorg[@]}
+pacman --noconfirm --needed -S ${xorg[@]}
 
 
 
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
 echo "installing dropbox..."
-sudo pacman --noconfirm --needed -S libxslt encfs
-wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
+pacman --noconfirm --needed -S libxslt encfs
+# wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
 # random stuff
 randon_stuff=(
@@ -47,7 +47,7 @@ randon_stuff=(
     calibre             # ebook management
     imagemagick
 )
-sudo pacman --noconfirm --needed -S ${randon_stuff[@]}
+pacman --noconfirm --needed -S ${randon_stuff[@]}
 
 # zathura
 zathura=(
@@ -55,14 +55,14 @@ zathura=(
     zathura-pdf-mupdf
 )
 
-sudo pacman --noconfirm --needed -S ${zathura[@]}
+pacman --noconfirm --needed -S ${zathura[@]}
 
 
 ########################################
 # i3 wm
 ########################################
 echo "installing i3 wm..."
-sudo pacman --noconfirm --needed -S i3-gaps i3-lock
+pacman --noconfirm --needed -S i3-gaps i3-lock
 
 
 ########################################
@@ -74,7 +74,7 @@ echo "setting up dotfiles..."
 git clone https://github.com/AxelBohm/dotfiles .dotfiles
 
 ## for symlink management
-sudo pacman --noconfirm --needed -S stow
+pacman --noconfirm --needed -S stow
 
 ### stow all the directories
 for dotfile in .dotfiles/*/; do
@@ -89,9 +89,9 @@ done
 chsh -s $(which zsh) # requires a restart to take action
 
 # clone zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/home/$username/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/$username/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 
 ########################################
@@ -100,14 +100,14 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 echo "compile st..."
 
 # should already be installed but for some reason I was missing this at some point
-sudo pacman --noconfirm --needed -S libX11
+pacman --noconfirm --needed -S libX11
 
-mkdir ~/src
+mkdir /home/$username/src
 git clone https://github.com/AxelBohm/st.git ~/src/st
-cd ~/src/st
+cd /home/$username/src/st
 make
-sudo make clean install
-cd ~
+make clean install
+cd /home/$username
 
 
 ########################################
@@ -115,23 +115,23 @@ cd ~
 ########################################
 echo "compile dwm..."
 
-git clone https://github.com/AxelBohm/dwm.git ~/src/dwm
-cd ~/src/dwm
+git clone https://github.com/AxelBohm/dwm.git /home/$username/src/dwm
+cd /home/$username/src/dwm
 make
-sudo make clean install
-cd ~
+make clean install
+cd /home/$username
 
 
 ########################################
 # python
 ########################################
 echo "python setup..."
-sudo pacman --noconfirm --needed -S python-pip
+pacman --noconfirm --needed -S python-pip
 
 ## miniconda
-# sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
-# sudo bash /opt/miniconda.sh -b -p /opt/miniconda
-# sudo rm /opt/miniconda.sh
+# wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
+# bash /opt/miniconda.sh -b -p /opt/miniconda
+# rm /opt/miniconda.sh
 
 ## modules
 echo "installing python modules..."
@@ -149,8 +149,8 @@ python_modules=(
 pip install --user ${python_modules[@]}
 
 echo "installing ODL from github..."
-git clone https://github.com/odlgroup/odl.git ~/.local/lib/python3.7/site-packages/odl
-cd ~/.local/lib/python3.7/site-packages/odl
+git clone https://github.com/odlgroup/odl.git /home/$username/.local/lib/python3.7/site-packages/odl
+cd /home/$username/.local/lib/python3.7/site-packages/odl
 pip install --user -e .
 
 # ## polybar dependency
@@ -164,13 +164,13 @@ pip install --user -e .
 echo "vim setup..."
 
 # clone vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git /home/$username/.vim/bundle/Vundle.vim
 
 # install plugins via vundle
 vim +PluginInstall +qall
 
 # installing YouCompleteMe
-python ~/.vim/bundle/YouCompleteMe/install.py
+python /home/$username/.vim/bundle/YouCompleteMe/install.py
 
 
 ########################################
@@ -178,14 +178,14 @@ python ~/.vim/bundle/YouCompleteMe/install.py
 ########################################
 echo "installing R..."
 
-sudo pacman -S --no-confirm --needed r
+pacman -S --no-confirm --needed r
 
 r_related=(
     pandoc-citeproc         # rmarkdown
     tk                      # needed for gui to choose mirror to download packages from
     gcc-fortran             # tidyverse
 )
-sudo pacman -S --no-confirm --needed ${r_related[@]}
+pacman -S --no-confirm --needed ${r_related[@]}
 
 # install R packages
 # currently only works by manually running
@@ -209,15 +209,15 @@ sudo pacman -S --no-confirm --needed ${r_related[@]}
 # calcurse
 ########################################
 echo "installing calcurse..."
-sudo pacman -S libproxy-dev autopoint asciidoc
+pacman -S libproxy-dev autopoint asciidoc
 pip install --user httplib2 # after installing python
 
 git clone https://github.com/lfos/calcurse.git /usr/local/src
 cd /usr/local/src/calcurse
-sudo ./autogen
-sudo ./configure
-sudo make
-sudo make install
+./autogen
+./configure
+make
+make install
 cd /.calcurse
 mkdir caldav
 cd
@@ -248,10 +248,10 @@ Password = ' > ~/.calcurse/caldav/config_todo
 ### go to https://fruux.com/sync/ to check for username and pwd
 ### and path (without the https://dav.fruux.com/ part)
 # for some reason caldav-calcurse had #!/usr/bin/python3 as first line should be #!/usr/bin/env python3 to work with conda?!?!
-cd .calcurse/caldav
+cd /home/$username/.calcurse/caldav
 calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
 calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
-
+cd /home/$username/
 
 ########################################
 # misc
@@ -263,7 +263,7 @@ music=(
     mpd
     ncmpcpp
 )
-sudo pacman -S --noconfirm --needed ${music[@]}
+pacman -S --noconfirm --needed ${music[@]}
 
 # mail
 mail=(
@@ -274,15 +274,15 @@ mail=(
     msmtp
     w3m
 )
-sudo pacman -S --noconfirm --needed ${mail[@]}
+pacman -S --noconfirm --needed ${mail[@]}
 
 
 # cronjobs
-sudo pacman -S --noconfirm --needed cronie
-sudo systemctl enable cronie
+pacman -S --noconfirm --needed cronie
+systemctl enable cronie
 
 # rss
-sudo pacman -S --no-confirm --needed newsboat
+pacman -S --no-confirm --needed newsboat
 
 
 ########################################
@@ -291,12 +291,14 @@ sudo pacman -S --no-confirm --needed newsboat
 echo "installing yay..."
 
 # dependencies
-sudo pacman -S --no-confirm --needed go
+pacman -S --no-confirm --needed go
 
 # install yay
-git clone https://aur.archlinux.org/yay.git
-cd yay
+git clone https://aur.archlinux.org/yay.git /home/$username/yay
+cd /home/$usernameyay
 makepkg -si
+cd /home/$username
+# rm -rf yay
 
 AUR_packages=(
     rstudio-desktop-bin
@@ -307,4 +309,5 @@ AUR_packages=(
     polybar
     siji-git                # glyphs for polybar
 )
-sudo yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
+echo 'installing AUR packages..'
+yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
