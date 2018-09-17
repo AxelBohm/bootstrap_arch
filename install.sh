@@ -11,6 +11,7 @@ HOSTNAME="TP"
 TIMEZONE="Europe/Vienna"
 DISK="/dev/sda"
 
+# read -r -p "Enter username:" username
 
 #####################
 # START
