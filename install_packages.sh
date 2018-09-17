@@ -12,6 +12,7 @@ basic=(
     dmenu
     ttf-dejavu
     cmake
+    wpa_supplicant
     tmux
 )
 pacman --noconfirm --needed -S ${basic[@]}
