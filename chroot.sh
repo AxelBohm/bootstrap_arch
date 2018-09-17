@@ -1,4 +1,4 @@
-# Timezone stuff
+# timezone stuff
 TZuser=$(cat timezone.tmp)
 ln -sf /usr/share/zoneinfo/$TZuser /etc/localtime
 hwclock --systohc
@@ -12,10 +12,7 @@ locale-gen
 # set LANG variable
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
-# pacman --noconfirm --needed -S networkmanager
-# systemctl enable NetworkManager
-# systemctl start NetworkManager
-
+# bootloader
 pacman --noconfirm --needed -S grub && grub-install --target=i386-pc /dev/sda && grub-mkconfig -o /boot/grub/grub.cfg
 
 # set root password
