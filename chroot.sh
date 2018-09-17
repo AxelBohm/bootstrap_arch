@@ -29,8 +29,10 @@ useradd -m -g wheel -s /bin/bash $username
 # uncomment the line %wheel ALL=(ALL) ALL in sudoers file
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 
+echo 'install packages...'
 curl \
   https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/install_packages.sh \
+  > install_packages.sh \
   && bash install_packages.sh
 
 
