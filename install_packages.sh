@@ -79,6 +79,7 @@ git clone https://github.com/AxelBohm/dotfiles /home/$username/.dotfiles
 pacman --noconfirm --needed -S stow
 
 ### stow all the directories
+cd /home/$username/.dotfiles
 for dotfile in /home/$username/.dotfiles/*/; do
      stow "$(basename "$dotfile")"
 done
