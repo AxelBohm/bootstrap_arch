@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# get this script via:
+# curl \
+#     https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/install.sh \
+#     > install.sh \
+#     && bash install.sh
 
 #####################
 # PARAMETERS
