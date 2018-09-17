@@ -2,7 +2,7 @@
 # don't forget during the installation process to install:
 # dbus NetworkManager dialog nmtui wicd wicd-gtk
 
-username=$1
+username=$(cat username.tmp)
 
 cd /home/$username/
 
@@ -36,6 +36,7 @@ pacman --noconfirm --needed -S libxslt encfs
 
 # random stuff
 randon_stuff=(
+    firefox
     htop
     cmatrix
     cowsay
@@ -72,13 +73,13 @@ pacman --noconfirm --needed -S i3-gaps i3-lock
 echo "setting up dotfiles..."
 
 ## clone dotfile repo
-git clone https://github.com/AxelBohm/dotfiles .dotfiles
+git clone https://github.com/AxelBohm/dotfiles /home/$username/.dotfiles
 
 ## for symlink management
 pacman --noconfirm --needed -S stow
 
 ### stow all the directories
-for dotfile in .dotfiles/*/; do
+for dotfile in /home/$username/.dotfiles/*/; do
      stow "$(basename "$dotfile")"
 done
 
@@ -87,10 +88,10 @@ done
 # zsh
 ########################################
 ## usually zsh is already installed?
-chsh -s $(which zsh) # requires a restart to take action
+usermod -s $(which zsh) $username # requires a restart to take action
 
 # clone oh-my-zsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git /home/$username/.oh-my-zsh
 
 # clone zsh plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions /home/$username/.oh-my-zsh/custom/plugins/zsh-autosuggestions
@@ -106,7 +107,7 @@ echo "compile st..."
 pacman --noconfirm --needed -S libX11
 
 mkdir /home/$username/src
-git clone https://github.com/AxelBohm/st.git ~/src/st
+git clone https://github.com/AxelBohm/st.git /home/$username/src/st
 cd /home/$username/src/st
 make
 make clean install
@@ -118,11 +119,12 @@ cd /home/$username
 ########################################
 echo "compile dwm..."
 
+mkdir /home/$username/dwm
 git clone https://github.com/AxelBohm/dwm.git /home/$username/src/dwm
 cd /home/$username/src/dwm
 make
 make clean install
-cd /home/$username
+cd /home/$username/
 
 
 ########################################
@@ -235,7 +237,7 @@ SyncFilter = cal
 Verbose = Yes
 [Auth]
 Username =
-Password = ' > ~/.calcurse/caldav/config_cal
+Password = ' > /home/$username/.calcurse/caldav/config_cal
 echo '[General]
 Binary = calcurse
 Hostname = dav.fruux.com
@@ -247,7 +249,7 @@ SyncFilter = todo
 Verbose = Yes
 [Auth]
 Username =
-Password = ' > ~/.calcurse/caldav/config_todo
+Password = ' > /home/$username/.calcurse/caldav/config_todo
 ### go to https://fruux.com/sync/ to check for username and pwd
 ### and path (without the https://dav.fruux.com/ part)
 # for some reason caldav-calcurse had #!/usr/bin/python3 as first line should be #!/usr/bin/env python3 to work with conda?!?!
@@ -280,10 +282,6 @@ mail=(
 pacman -S --noconfirm --needed ${mail[@]}
 
 
-# cronjobs
-pacman -S --noconfirm --needed cronie
-systemctl enable cronie
-
 # rss
 pacman -S --no-confirm --needed newsboat
 
@@ -296,12 +294,15 @@ echo "installing yay..."
 # dependencies
 pacman -S --no-confirm --needed go
 
+# switch to regular user
+su $username
+
 # install yay
 git clone https://aur.archlinux.org/yay.git /home/$username/yay
-cd /home/$usernameyay
+cd /home/$username/yay
 makepkg -si
-cd /home/$username
-# rm -rf yay
+cd /home/$username/
+rm -rf yay
 
 AUR_packages=(
     rstudio-desktop-bin
@@ -313,4 +314,14 @@ AUR_packages=(
     siji-git                # glyphs for polybar
 )
 echo 'installing AUR packages..'
-yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
+sudo yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
+
+
+########################################
+# cronjobs
+########################################
+sudo pacman -S --noconfirm --needed cronie
+systemctl enable cronie
+
+# go back to root
+su
