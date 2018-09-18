@@ -24,9 +24,8 @@ useradd -m -g wheel -s /bin/bash $username
 sed -i '/%wheel ALL=(ALL) NOPASSWD: ALL/s/^#//g' /etc/sudoers
 
 echo 'install packages...'
-curl \
-  https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/install_packages.sh \
-  | bash
+bash <(curl \
+    https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/install_packages.sh)
 
 echo 'set root password:'
 passwd

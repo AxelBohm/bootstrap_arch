@@ -1,6 +1,4 @@
-# set up arch machine
-# don't forget during the installation process to install:
-# dbus NetworkManager dialog nmtui wicd wicd-gtk
+# install packages, clone dotfiles,...
 
 username=$(cat username.tmp)
 

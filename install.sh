@@ -1,10 +1,8 @@
 #!/bin/bash
 
 # get this script via:
-# curl \
-#     https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/install.sh \
-#     > install.sh \
-#     && bash install.sh
+# bash <(curl \
+#     https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/install.sh)
 
 #####################
 # PARAMETERS
@@ -56,16 +54,18 @@ yes | mkfs.ext4 /dev/sda4
 yes | mkfs.ext4 /dev/sda3
 yes | mkfs.ext4 /dev/sda1
 
+# make swap partition
 mkswap /dev/sda2
 swapon /dev/sda2
 
+# mount partitions
 mount /dev/sda3 /mnt
 mkdir -p /mnt/boot
 mount /dev/sda1 /mnt/boot
 mkdir -p /mnt/home
 mount /dev/sda4 /mnt/home
 
-
+# pacstrap
 pacstrap /mnt base base-devel gvim
 
 # -U means use uuID
@@ -79,10 +79,13 @@ echo $username > /mnt/username.tmp
 echo $hostname >> /mnt/etc/hostname
 
 
-
 echo 'Chrooting into installed system to continue setup...'
 curl \
     https://raw.githubusercontent.com/AxelBohm/bootstrap_arch/master/chroot.sh \
     > /mnt/chroot.sh \
     && arch-chroot /mnt bash chroot.sh \
     && rm /mnt/chroot.sh
+
+#clean up
+rm /mnt/timezon.tmp
+rm /mnt/username.tmp
