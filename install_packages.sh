@@ -1,14 +1,9 @@
 # install packages, clone dotfiles,...
 
-
-########################################
-# become user
-########################################
+# get the username
 username=$(cat username.tmp)
 
-echo 'become user...'
-su $username
-
+# just for safety
 cd /home/$username/
 
 ########################################
