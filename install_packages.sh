@@ -31,6 +31,7 @@ xorg=(
     xorg-server
     xorg-xev
     xorg-xrandr
+    xorg-xsetroot
 )
 sudo pacman --noconfirm --needed -S ${xorg[@]}
 
