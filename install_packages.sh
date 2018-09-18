@@ -6,6 +6,7 @@
 ########################################
 username=$(cat username.tmp)
 
+echo 'become user...'
 su $username
 
 cd /home/$username/
@@ -23,6 +24,7 @@ basic=(
     wpa_supplicant
     tmux
 )
+echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
 
 # X
@@ -33,6 +35,7 @@ xorg=(
     xorg-xrandr
     xorg-xsetroot
 )
+echo 'installing X...'
 sudo pacman --noconfirm --needed -S ${xorg[@]}
 
 
@@ -41,7 +44,6 @@ sudo pacman --noconfirm --needed -S ${xorg[@]}
 # sudo pacman --noconfirm --needed -S libxslt encfs
 # wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
-# random stuff
 randon_stuff=(
     firefox
     htop
@@ -57,9 +59,9 @@ randon_stuff=(
     imagemagick
     diff-so-fancy
 )
+echo 'installing misc packages...'
 sudo pacman --noconfirm --needed -S ${randon_stuff[@]}
 
-# zathura
 zathura=(
     zathura
     zathura-pdf-mupdf
@@ -96,7 +98,8 @@ done
 ########################################
 # zsh
 ########################################
-## usually zsh is already installed?
+
+echo 'zsh...'
 sudo pacman --noconfirm --needed -S zsh
 chsh -s $(which zsh) # requires a restart to take action
 
