@@ -33,6 +33,15 @@ echo 'set root password:'
 passwd
 
 echo 'set user password:...'
-passwd $username
+read -r -p "enter password" pass1
+read -r -p "retype password" pass2
+while [ $pass1 != $pass2 ]
+do
+    read -r -p "passwords did not match. Try again" pass1
+    read -r -p "retype password" pass2
+done
+echo "$name:$pass1" | chpasswd
+
+# passwd $username
 
 exit
