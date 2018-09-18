@@ -91,3 +91,5 @@ curl \
 #clean up
 rm /mnt/timezon.tmp
 rm /mnt/username.tmp
+
+echo 'finished...'
