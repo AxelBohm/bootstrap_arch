@@ -297,7 +297,7 @@ systemctl enable cronie
 echo "installing yay..."
 
 # dependencies
-sudo pacman -S --no-confirm --needed go
+sudo pacman -S --noconfirm --needed go
 
 # install yay
 git clone https://aur.archlinux.org/yay.git /home/$username/yay
