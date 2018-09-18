@@ -1,8 +1,18 @@
 # install packages, clone dotfiles,...
 
+
+########################################
+# become user
+########################################
 username=$(cat username.tmp)
 
+su $username
+
 cd /home/$username/
+
+########################################
+# start installing
+########################################
 
 basic=(
     wget
@@ -13,7 +23,7 @@ basic=(
     wpa_supplicant
     tmux
 )
-pacman --noconfirm --needed -S ${basic[@]}
+sudo pacman --noconfirm --needed -S ${basic[@]}
 
 # X
 xorg=(
@@ -22,14 +32,12 @@ xorg=(
     xorg-xev
     xorg-xrandr
 )
-pacman --noconfirm --needed -S ${xorg[@]}
-
-
+sudo pacman --noconfirm --needed -S ${xorg[@]}
 
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
-echo "installing dropbox..."
-pacman --noconfirm --needed -S libxslt encfs
+# echo "installing dropbox..."
+# sudo pacman --noconfirm --needed -S libxslt encfs
 # wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
 # random stuff
@@ -46,8 +54,9 @@ randon_stuff=(
     rofi
     calibre             # ebook management
     imagemagick
+    diff-so-fancy
 )
-pacman --noconfirm --needed -S ${randon_stuff[@]}
+sudo pacman --noconfirm --needed -S ${randon_stuff[@]}
 
 # zathura
 zathura=(
@@ -55,14 +64,14 @@ zathura=(
     zathura-pdf-mupdf
 )
 
-pacman --noconfirm --needed -S ${zathura[@]}
+sudo pacman --noconfirm --needed -S ${zathura[@]}
 
 
 ########################################
 # i3 wm
 ########################################
 echo "installing i3 wm..."
-pacman --noconfirm --needed -S i3-gaps i3-lock
+sudo pacman --noconfirm --needed -S i3-gaps i3-lock
 
 
 ########################################
@@ -74,7 +83,7 @@ echo "setting up dotfiles..."
 git clone https://github.com/AxelBohm/dotfiles /home/$username/.dotfiles
 
 ## for symlink management
-pacman --noconfirm --needed -S stow
+sudo pacman --noconfirm --needed -S stow
 
 ### stow all the directories
 cd /home/$username/.dotfiles
@@ -87,14 +96,15 @@ done
 # zsh
 ########################################
 ## usually zsh is already installed?
-usermod -s $(which zsh) $username # requires a restart to take action
+sudo pacman --noconfirm --needed -S zsh
+chsh -s $(which zsh) # requires a restart to take action
 
 # clone oh-my-zsh
 git clone https://github.com/robbyrussell/oh-my-zsh.git /home/$username/.oh-my-zsh
 
 # clone zsh plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions /home/$username/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$username/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$username/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 
 ########################################
@@ -103,13 +113,12 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$userna
 echo "compile st..."
 
 # should already be installed but for some reason I was missing this at some point
-pacman --noconfirm --needed -S libX11
+sudo pacman --noconfirm --needed -S libX11
 
-mkdir /home/$username/src
 git clone https://github.com/AxelBohm/st.git /home/$username/src/st
 cd /home/$username/src/st
 make
-make clean install
+sudo make clean install
 cd /home/$username
 
 
@@ -118,11 +127,10 @@ cd /home/$username
 ########################################
 echo "compile dwm..."
 
-mkdir /home/$username/dwm
 git clone https://github.com/AxelBohm/dwm.git /home/$username/src/dwm
 cd /home/$username/src/dwm
 make
-make clean install
+sudo make clean install
 cd /home/$username/
 
 
@@ -130,7 +138,7 @@ cd /home/$username/
 # python
 ########################################
 echo "python setup..."
-pacman --noconfirm --needed -S python-pip
+sudo pacman --noconfirm --needed -S python-pip
 
 ## miniconda
 # wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
@@ -182,14 +190,14 @@ python /home/$username/.vim/bundle/YouCompleteMe/install.py
 ########################################
 echo "installing R..."
 
-pacman -S --no-confirm --needed r
+sudo pacman -S --no-confirm --needed r
 
 r_related=(
     pandoc-citeproc         # rmarkdown
     tk                      # needed for gui to choose mirror to download packages from
     gcc-fortran             # tidyverse
 )
-pacman -S --no-confirm --needed ${r_related[@]}
+sudo pacman -S --no-confirm --needed ${r_related[@]}
 
 # install R packages
 # currently only works by manually running
@@ -213,7 +221,7 @@ pacman -S --no-confirm --needed ${r_related[@]}
 # calcurse
 ########################################
 echo "installing calcurse..."
-pacman -S libproxy-dev autopoint asciidoc
+sudo pacman -S libproxy-dev autopoint asciidoc
 pip install --user httplib2 # after installing python
 
 git clone https://github.com/lfos/calcurse.git /usr/local/src
@@ -267,7 +275,7 @@ music=(
     mpd
     ncmpcpp
 )
-pacman -S --noconfirm --needed ${music[@]}
+sudo pacman -S --noconfirm --needed ${music[@]}
 
 # mail
 mail=(
@@ -278,11 +286,16 @@ mail=(
     msmtp
     w3m
 )
-pacman -S --noconfirm --needed ${mail[@]}
-
+sudo pacman -S --noconfirm --needed ${mail[@]}
 
 # rss
-pacman -S --no-confirm --needed newsboat
+sudo pacman -S --no-confirm --needed newsboat
+
+########################################
+# cronjobs
+########################################
+sudo pacman -S --noconfirm --needed cronie
+systemctl enable cronie
 
 
 ########################################
@@ -291,10 +304,7 @@ pacman -S --no-confirm --needed newsboat
 echo "installing yay..."
 
 # dependencies
-pacman -S --no-confirm --needed go
-
-# switch to regular user
-su $username
+sudo pacman -S --no-confirm --needed go
 
 # install yay
 git clone https://aur.archlinux.org/yay.git /home/$username/yay
@@ -311,16 +321,14 @@ AUR_packages=(
     i3lock-color            # needed for betterlockscreen
     polybar
     siji-git                # glyphs for polybar
+    dropbox
 )
 echo 'installing AUR packages..'
 sudo yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
 
 
-########################################
-# cronjobs
-########################################
-sudo pacman -S --noconfirm --needed cronie
-systemctl enable cronie
 
-# go back to root
+########################################
+# go back to superuser
+########################################
 su
