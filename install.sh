@@ -78,6 +78,8 @@ echo $username > /mnt/username.tmp
 # set hostname
 echo $hostname >> /mnt/etc/hostname
 
+# copy the wpa supplicant file from my custom iso to the fresh arch install
+cp /etc/wpa_supplicant/wpa_supplicant.conf /mnt/etc/wpa_supplicant/wpa_supplicant.conf
 
 echo 'Chrooting into installed system to continue setup...'
 curl \
