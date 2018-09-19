@@ -317,7 +317,7 @@ AUR_packages=(
     dropbox
 )
 echo 'installing AUR packages..'
-sudo yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
+yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
 
 
 
