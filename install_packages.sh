@@ -302,7 +302,7 @@ sudo pacman -S --noconfirm --needed go
 # install yay
 git clone https://aur.archlinux.org/yay.git /home/$username/yay
 cd /home/$username/yay
-makepkg -si
+makepkg -si --noconfirm
 cd /home/$username/
 rm -rf yay
 
