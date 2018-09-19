@@ -319,9 +319,3 @@ AUR_packages=(
 echo 'installing AUR packages..'
 yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
 
-
-
-########################################
-# go back to superuser
-########################################
-su
