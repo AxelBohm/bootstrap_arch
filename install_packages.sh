@@ -96,7 +96,7 @@ done
 
 echo 'zsh...'
 sudo pacman --noconfirm --needed -S zsh
-chsh -s $(which zsh) # requires a restart to take action
+# chsh -s $(which zsh) # requires a restart to take action
 
 # clone oh-my-zsh
 git clone https://github.com/robbyrussell/oh-my-zsh.git /home/$username/.oh-my-zsh

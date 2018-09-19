@@ -29,6 +29,10 @@ curl \
     > install_packages.sh
 sudo -H -u $username bash install_packages.sh
 
+# change user shell to zsh
+# if done by user it will always ask for password
+usermod -s /usr/bin/zsh $username
+
 echo 'set root password:'
 passwd
 
