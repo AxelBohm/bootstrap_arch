@@ -39,7 +39,7 @@ sudo pacman --noconfirm --needed -S ${xorg[@]}
 # sudo pacman --noconfirm --needed -S libxslt encfs
 # wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
 
-randon_stuff=(
+random_stuff=(
     firefox
     htop
     cmatrix
@@ -55,7 +55,7 @@ randon_stuff=(
     diff-so-fancy
 )
 echo 'installing misc packages...'
-sudo pacman --noconfirm --needed -S ${randon_stuff[@]}
+sudo pacman --noconfirm --needed -S ${random_stuff[@]}
 
 zathura=(
     zathura
