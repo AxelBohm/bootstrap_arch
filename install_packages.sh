@@ -20,6 +20,7 @@ basic=(
     tmux
     feh                 # wallpaper
     xf86-video-intel    # intel driver (needed for screen brightness)
+    alsa-utils          # sound
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
@@ -270,6 +271,7 @@ music=(
     libmpdclient
     mpd
     ncmpcpp
+    mpc
 )
 sudo pacman -S --noconfirm --needed ${music[@]}
 
