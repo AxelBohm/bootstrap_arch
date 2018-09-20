@@ -19,6 +19,7 @@ basic=(
     wpa_supplicant
     tmux
     feh                 # wallpaper
+    xf86-video-intel    # intel driver (needed for screen brightness)
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
