@@ -16,7 +16,9 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 pacman --noconfirm --needed -S grub && grub-install --target=i386-pc /dev/sda && grub-mkconfig -o /boot/grub/grub.cfg
 
 
-###################
+######################################
+# user specific stuff
+######################################
 username=$(cat username.tmp)
 useradd -m -g wheel -s /bin/bash $username
 
@@ -29,9 +31,16 @@ curl \
     > install_packages.sh
 sudo -H -u $username bash install_packages.sh
 
+######################################
+# user stuff that is best done by root
+######################################
+
 # change user shell to zsh
 # if done by user it will always ask for password
 usermod -s /usr/bin/zsh $username
+
+# dhcpcd hook to start wpa_supplicant
+ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /usr/lib/dhcpcd/dhcpcd-hooks/
 
 echo 'set root password:'
 passwd
@@ -46,6 +55,5 @@ do
 done
 echo "$username:$pass1" | chpasswd
 
-# passwd $username
 
 exit
