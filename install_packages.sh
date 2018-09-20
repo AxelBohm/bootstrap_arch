@@ -315,7 +315,7 @@ AUR_packages=(
     telegram-cli-git
     # i3lock-color            # needed for betterlockscreen
     # polybar
-    # siji-git                # glyphs for polybar
+    siji-git                # glyphs for polybar/tmux
     dropbox
 )
 echo 'installing AUR packages..'
