@@ -190,14 +190,14 @@ python /home/$username/.vim/bundle/YouCompleteMe/install.py
 ########################################
 echo "installing R..."
 
-sudo pacman -S --no-confirm --needed r
+sudo pacman -S --noconfirm --needed r
 
 r_related=(
     pandoc-citeproc         # rmarkdown
     tk                      # needed for gui to choose mirror to download packages from
     gcc-fortran             # tidyverse
 )
-sudo pacman -S --no-confirm --needed ${r_related[@]}
+sudo pacman -S --noconfirm --needed ${r_related[@]}
 
 # install R packages
 # currently only works by manually running
@@ -283,7 +283,7 @@ mail=(
 sudo pacman -S --noconfirm --needed ${mail[@]}
 
 # rss
-sudo pacman -S --no-confirm --needed newsboat
+sudo pacman -S --noconfirm --needed newsboat
 
 ########################################
 # cronjobs
