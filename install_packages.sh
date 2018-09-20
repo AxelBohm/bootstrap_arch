@@ -18,6 +18,7 @@ basic=(
     cmake
     wpa_supplicant
     tmux
+    feh                 # wallpaper
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
