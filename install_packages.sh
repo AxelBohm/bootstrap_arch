@@ -21,6 +21,7 @@ basic=(
     feh                 # wallpaper
     xf86-video-intel    # intel driver (needed for screen brightness)
     alsa-utils          # sound
+    encfs               # dropbox encryption
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
@@ -40,8 +41,7 @@ sudo pacman --noconfirm --needed -S ${xorg[@]}
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
 # echo "installing dropbox..."
-# sudo pacman --noconfirm --needed -S libxslt encfs
-# wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
+# sudo pacman --noconfirm --needed -S libxslt
 
 random_stuff=(
     firefox
