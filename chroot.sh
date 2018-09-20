@@ -44,7 +44,7 @@ do
     read -r -s -p "passwords did not match. Try again: " pass1
     read -r -s -p "retype password: " pass2
 done
-echo "$name:$pass1" | chpasswd
+echo "$username:$pass1" | chpasswd
 
 # passwd $username
 
