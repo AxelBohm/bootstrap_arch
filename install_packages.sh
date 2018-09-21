@@ -157,6 +157,8 @@ python_modules=(
     numpy
     pandas
     flake8
+    jupyterlab
+    sklearn
     pipenv
     vim-vint            # vimscript linting
     unidecode           # quickswitch dependency
