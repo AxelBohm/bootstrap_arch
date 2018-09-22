@@ -22,6 +22,7 @@ basic=(
     xf86-video-intel    # intel driver (needed for screen brightness)
     alsa-utils          # sound
     encfs               # dropbox encryption
+    wireless-tools
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
@@ -52,7 +53,7 @@ random_stuff=(
     powerline-fonts
     sc-im
     ranger
-    texlive-full
+    texlive-most
     rofi
     calibre             # ebook management
     imagemagick
