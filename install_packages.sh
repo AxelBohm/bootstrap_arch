@@ -309,14 +309,14 @@ rm -rf yay
 
 AUR_packages=(
     rstudio-desktop-bin
-    littler                 # cmdline pip for R
-    rambox                  # messaging
+    littler                   # cmdline pip for R
+    rambox-bin                # messaging
     telegram-cli-git
     # i3lock-color            # needed for betterlockscreen
     # polybar
-    # siji-git                # glyphs for polybar
+    siji-git                  # glyphs for polybar
     dropbox
 )
 echo 'installing AUR packages..'
-yay --nodiffmenu --noeditmenu -S ${AUR_packages[@]}
+yay --nodiffmenu --noeditmenu --noconfirm -S ${AUR_packages[@]}
 
