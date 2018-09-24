@@ -19,6 +19,10 @@ basic=(
     wpa_supplicant
     tmux
     feh                 # wallpaper
+    xf86-video-intel    # intel driver (needed for screen brightness)
+    alsa-utils          # sound
+    encfs               # dropbox encryption
+    wireless-tools
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
@@ -30,6 +34,7 @@ xorg=(
     xorg-xev
     xorg-xrandr
     xorg-xsetroot
+    xorg-xbacklight
 )
 echo 'installing X...'
 sudo pacman --noconfirm --needed -S ${xorg[@]}
@@ -37,8 +42,7 @@ sudo pacman --noconfirm --needed -S ${xorg[@]}
 
 # dropbox (headless install from dropbox website, build from AUR instead??)
 # echo "installing dropbox..."
-# sudo pacman --noconfirm --needed -S libxslt encfs
-# wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf-
+# sudo pacman --noconfirm --needed -S libxslt
 
 random_stuff=(
     firefox
@@ -49,7 +53,7 @@ random_stuff=(
     powerline-fonts
     sc-im
     ranger
-    texlive-full
+    texlive-most
     rofi
     calibre             # ebook management
     imagemagick
@@ -154,6 +158,8 @@ python_modules=(
     numpy
     pandas
     flake8
+    jupyterlab
+    sklearn
     pipenv
     vim-vint            # vimscript linting
     unidecode           # quickswitch dependency
@@ -268,6 +274,7 @@ music=(
     libmpdclient
     mpd
     ncmpcpp
+    mpc
 )
 sudo pacman -S --noconfirm --needed ${music[@]}
 
