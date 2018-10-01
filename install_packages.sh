@@ -35,6 +35,7 @@ xorg=(
     xorg-xrandr
     xorg-xsetroot
     xorg-xbacklight
+    xclip
 )
 echo 'installing X...'
 sudo pacman --noconfirm --needed -S ${xorg[@]}
