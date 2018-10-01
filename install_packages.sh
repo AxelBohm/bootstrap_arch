@@ -23,6 +23,7 @@ basic=(
     alsa-utils          # sound
     encfs               # dropbox encryption
     wireless-tools
+    lastpass-cli
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
