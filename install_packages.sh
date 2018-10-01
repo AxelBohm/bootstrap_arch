@@ -223,48 +223,20 @@ sudo pacman -S --noconfirm --needed ${r_related[@]}
 # calcurse
 ########################################
 echo "installing calcurse..."
-sudo pacman -S libproxy-dev autopoint asciidoc
+sudo pacman -S --noconfirm asciidoc
 pip install --user httplib2 # after installing python
 
-git clone https://github.com/lfos/calcurse.git /usr/local/src
+sudo git clone https://github.com/lfos/calcurse.git /usr/local/src/calcurse
 cd /usr/local/src/calcurse
-./autogen
-./configure
-make
-make install
-cd /.calcurse
-mkdir caldav
-cd
-echo '[General]
-Binary = calcurse
-Hostname = dav.fruux.com
-Path =
-AuthMethod = basic
-InsecureSSL = Yes
-DryRun = No
-SyncFilter = cal
-Verbose = Yes
-[Auth]
-Username =
-Password = ' > /home/$username/.calcurse/caldav/config_cal
-echo '[General]
-Binary = calcurse
-Hostname = dav.fruux.com
-Path =
-AuthMethod = basic
-InsecureSSL = Yes
-DryRun = No
-SyncFilter = todo
-Verbose = Yes
-[Auth]
-Username =
-Password = ' > /home/$username/.calcurse/caldav/config_todo
-### go to https://fruux.com/sync/ to check for username and pwd
-### and path (without the https://dav.fruux.com/ part)
+sudo git checkout 40eb6f8           # there is a bug but this commit works
+sudo ./autogen.sh
+sudo ./configure
+sudo make
+sudo make install
+cd /.calcurse/caldav
 # for some reason caldav-calcurse had #!/usr/bin/python3 as first line should be #!/usr/bin/env python3 to work with conda?!?!
-cd /home/$username/.calcurse/caldav
-calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
-calcurse-caldav --init="keep-remote" --config config_todo --syncdb sync_todo.db
+CALCURSE_CALDAV_PASSWORD=$(lpass show --password fruux-arch) calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
+CALCURSE_CALDAV_PASSWORD=$(lpass show --password fruux-arch) calcurse-caldav --init="two-way" --config config_todo --syncdb sync_todo.db
 cd /home/$username/
 
 ########################################
