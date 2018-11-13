@@ -23,7 +23,7 @@ basic=(
     alsa-utils          # sound
     encfs               # dropbox encryption
     wireless-tools
-    lastpass-cli
+    pass
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
@@ -235,8 +235,8 @@ sudo make
 sudo make install
 cd /.calcurse/caldav
 # for some reason caldav-calcurse had #!/usr/bin/python3 as first line should be #!/usr/bin/env python3 to work with conda?!?!
-CALCURSE_CALDAV_PASSWORD=$(lpass show --password fruux-arch) calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
-CALCURSE_CALDAV_PASSWORD=$(lpass show --password fruux-arch) calcurse-caldav --init="two-way" --config config_todo --syncdb sync_todo.db
+CALCURSE_CALDAV_PASSWORD=$(pass show fruux-arch) calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
+CALCURSE_CALDAV_PASSWORD=$(pass show fruux-arch) calcurse-caldav --init="two-way" --config config_todo --syncdb sync_todo.db
 cd /home/$username/
 
 ########################################
@@ -289,6 +289,7 @@ cd /home/$username/
 rm -rf yay
 
 AUR_packages=(
+    browserpass
     rstudio-desktop-bin
     littler                   # cmdline pip for R
     rambox-bin                # messaging
