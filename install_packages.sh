@@ -234,8 +234,7 @@ sudo make
 sudo make install
 cd /.calcurse/caldav
 # for some reason caldav-calcurse had #!/usr/bin/python3 as first line should be #!/usr/bin/env python3 to work with conda?!?!
-CALCURSE_CALDAV_PASSWORD=$(pass show fruux-arch) calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
-CALCURSE_CALDAV_PASSWORD=$(pass show fruux-arch) calcurse-caldav --init="two-way" --config config_todo --syncdb sync_todo.db
+CALCURSE_CALDAV_PASSWORD=$(pass show Business/fruux-arch) calcurse-caldav --init="keep-remote" --config config_cal --syncdb sync_cal.db
 cd /home/$username/
 
 ########################################
