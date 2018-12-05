@@ -11,7 +11,7 @@
 ######################
 
 # name of wifi interface
-WIFI_INTERFACE="$(ip link | grep -o 'wlp.*:')"
+WIFI_INTERFACE="$(iw dev | awk '$1=="Interface"{print $2}')"
 
 # remove colon from above string (there is no lookahead in grep so there is no
 # way to get the correct name from the regex right away)
