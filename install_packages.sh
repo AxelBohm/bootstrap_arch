@@ -24,6 +24,7 @@ basic=(
     encfs               # dropbox encryption
     wireless-tools
     pass
+    openssh
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
@@ -56,10 +57,10 @@ random_stuff=(
     sc-im
     ranger
     texlive-most
-    rofi
     calibre             # ebook management
     imagemagick
     diff-so-fancy
+    compton
 )
 echo 'installing misc packages...'
 sudo pacman --noconfirm --needed -S ${random_stuff[@]}
@@ -70,13 +71,6 @@ zathura=(
 )
 
 sudo pacman --noconfirm --needed -S ${zathura[@]}
-
-
-########################################
-# i3 wm
-########################################
-echo "installing i3 wm..."
-sudo pacman --noconfirm --needed -S i3-gaps i3-lock
 
 
 ########################################
