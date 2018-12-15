@@ -108,31 +108,29 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$userna
 
 
 ########################################
-# suckless terminal
+# suckless
 ########################################
 echo "compile st..."
-
 # should already be installed but for some reason I was missing this at some point
 sudo pacman --noconfirm --needed -S libX11
 
 git clone https://github.com/AxelBohm/st.git /home/$username/src/st
 cd /home/$username/src/st
-make
 sudo make clean install
 cd /home/$username
 
-
-########################################
-# dwm
-########################################
 echo "compile dwm..."
-
 git clone https://github.com/AxelBohm/dwm.git /home/$username/src/dwm
 cd /home/$username/src/dwm
-make
 sudo make clean install
-cd /home/$username/
 
+echo "compile slock..."
+
+git clone https://github.com/AxelBohm/dwm.git /home/$username/src/slock
+cd /home/$username/src/slock
+sudo make clean install
+
+cd /home/$username/
 
 ########################################
 # python
