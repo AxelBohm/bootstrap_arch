@@ -90,7 +90,7 @@ curl \
     && rm /mnt/chroot.sh
 
 #clean up
-rm /mnt/timezon.tmp
+rm /mnt/timezone.tmp
 rm /mnt/username.tmp
 
 echo 'finished...'
