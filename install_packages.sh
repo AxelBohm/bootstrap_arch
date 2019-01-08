@@ -14,6 +14,7 @@ basic=(
     wget
     git
     dmenu
+    terminus-font
     ttf-dejavu
     cmake
     wpa_supplicant
