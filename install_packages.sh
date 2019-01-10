@@ -60,7 +60,6 @@ random_stuff=(
     cowsay
     neofetch
     powerline-fonts
-    sc-im
     ranger
     texlive-most
     calibre             # ebook management
