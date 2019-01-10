@@ -33,6 +33,9 @@ basic=(
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
 
+# purely for debugging
+read -p "Press enter to continue"
+
 # X
 xorg=(
     xorg-xinit
