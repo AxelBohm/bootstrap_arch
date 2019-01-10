@@ -3,6 +3,9 @@
 # get the username
 username=$(cat username.tmp)
 
+# purely for debugging
+read -p "Press enter to continue"
+
 # just for safety
 cd /home/$username/
 
@@ -290,3 +293,5 @@ AUR_packages=(
 echo 'installing AUR packages..'
 yay --nodiffmenu --noeditmenu --noconfirm -S ${AUR_packages[@]}
 
+# purely for debugging
+read -p "Press enter to continue"
