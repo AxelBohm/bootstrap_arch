@@ -26,7 +26,6 @@ basic=(
     xf86-video-intel    # intel driver (needed for screen brightness)
     alsa-utils          # sound
     encfs               # dropbox encryption
-    wireless-tools
     pass
     openssh
 )
