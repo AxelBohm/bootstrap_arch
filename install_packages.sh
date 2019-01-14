@@ -3,9 +3,6 @@
 # get the username
 username=$(cat username.tmp)
 
-# purely for debugging
-read -p "Press enter to continue"
-
 # just for safety
 cd /home/$username/
 
@@ -32,8 +29,6 @@ basic=(
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
 
-# purely for debugging
-read -p "Press enter to continue"
 
 # X
 xorg=(
@@ -296,6 +291,3 @@ AUR_packages=(
 )
 echo 'installing AUR packages..'
 yay --nodiffmenu --noeditmenu --noconfirm -S ${AUR_packages[@]}
-
-# purely for debugging
-read -p "Press enter to continue"
