@@ -12,7 +12,6 @@ cd /home/$username/
 
 basic=(
     wget
-    git
     dmenu
     terminus-font
     ttf-dejavu
@@ -29,6 +28,9 @@ basic=(
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
 
+# sometimes the arrays break if a package is no longer available and then nothing is installed
+# however, git is super important and therefore get's its own command
+sudo pacman --noconfirm --needed -S git
 
 # X
 xorg=(
