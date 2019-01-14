@@ -130,8 +130,7 @@ cd /home/$username/src/dwm
 sudo make clean install
 
 echo "compile slock..."
-
-git clone https://github.com/AxelBohm/dwm.git /home/$username/src/slock
+git clone https://github.com/AxelBohm/slock.git /home/$username/src/slock
 cd /home/$username/src/slock
 sudo make clean install
 
