@@ -134,6 +134,10 @@ git clone https://github.com/AxelBohm/slock.git /home/$username/src/slock
 cd /home/$username/src/slock
 sudo make clean install
 
+echo "compile surf..."
+sudo pacman --noconfirm --needed -S gcr
+git clone https://github.com/AxelBohm/surf.git /home/$username/src/surf
+
 cd /home/$username/
 
 ########################################
