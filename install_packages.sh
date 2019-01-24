@@ -89,10 +89,7 @@ sudo pacman --noconfirm --needed -S stow
 
 ### stow all the directories
 cd /home/$username/.dotfiles
-for dotfile in /home/$username/.dotfiles/*/; do
-     stow "$(basename "$dotfile")"
-done
-
+stow *
 
 ########################################
 # zsh
