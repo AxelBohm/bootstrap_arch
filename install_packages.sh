@@ -70,6 +70,7 @@ sudo pacman --noconfirm --needed -S ${random_stuff[@]}
 zathura=(
     zathura
     zathura-pdf-mupdf
+    xdotool              # vimtex + zathura
 )
 
 sudo pacman --noconfirm --needed -S ${zathura[@]}
