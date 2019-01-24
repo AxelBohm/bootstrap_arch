@@ -38,7 +38,7 @@ xorg=(
     xorg-server
     xorg-xev
     xorg-xrandr
-    xorg-xsetroot
+    xorg-xsetroot           # for dwm-status
     xorg-xbacklight
     xclip
 )
