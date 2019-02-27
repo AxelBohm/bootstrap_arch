@@ -291,3 +291,8 @@ AUR_packages=(
 )
 echo 'installing AUR packages..'
 yay --nodiffmenu --noeditmenu --noconfirm -S ${AUR_packages[@]}
+
+# sudo pacman -S neovim
+# cd /home/$username/.config/nvim/autoload/plug.ivm/YouCompleteMe
+# git submodule update --init --recursive
+# python install.py
