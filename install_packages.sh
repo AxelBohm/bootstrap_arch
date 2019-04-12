@@ -12,7 +12,6 @@ cd /home/$username/
 
 basic=(
     wget
-    dmenu
     terminus-font
     ttf-dejavu
     cmake
@@ -56,7 +55,6 @@ random_stuff=(
     cmatrix
     cowsay
     neofetch
-    powerline-fonts
     ranger
     texlive-most
     calibre             # ebook management
@@ -110,10 +108,10 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$userna
 ########################################
 # suckless
 ########################################
+
 echo "compile st..."
 # should already be installed but for some reason I was missing this at some point
 sudo pacman --noconfirm --needed -S libX11
-
 git clone https://github.com/AxelBohm/st.git /home/$username/src/st
 cd /home/$username/src/st
 sudo make clean install
@@ -176,12 +174,6 @@ pip install --user -e .
 # vim
 ########################################
 echo "vim setup..."
-
-# clone vundle
-git clone https://github.com/VundleVim/Vundle.vim.git /home/$username/.vim/bundle/Vundle.vim
-
-# install plugins via vundle
-vim +PluginInstall +qall
 
 # installing YouCompleteMe
 python /home/$username/.vim/bundle/YouCompleteMe/install.py
