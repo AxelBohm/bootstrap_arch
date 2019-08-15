@@ -23,6 +23,8 @@ basic=(
     encfs               # dropbox encryption
     pass
     openssh
+    acpi
+    acpilight
 )
 echo 'installing basics...'
 sudo pacman --noconfirm --needed -S ${basic[@]}
@@ -45,33 +47,36 @@ echo 'installing X...'
 sudo pacman --noconfirm --needed -S ${xorg[@]}
 
 
-# dropbox (headless install from dropbox website, build from AUR instead??)
-# echo "installing dropbox..."
-# sudo pacman --noconfirm --needed -S libxslt
-
 random_stuff=(
-    firefox
     htop
-    cmatrix
-    cowsay
     neofetch
     ranger
     texlive-most
     calibre             # ebook management
-    imagemagick
-    diff-so-fancy
     compton
+    spectacle           # screenshots
+    hsetroot            # set background colors
+    avrdude             # for flashing atreus
 )
 echo 'installing misc packages...'
 sudo pacman --noconfirm --needed -S ${random_stuff[@]}
+
 
 zathura=(
     zathura
     zathura-pdf-mupdf
     xdotool              # vimtex + zathura
 )
-
+echo 'installing zatharu...'
 sudo pacman --noconfirm --needed -S ${zathura[@]}
+
+browser=(
+    firefox
+    browserpass
+    browserpass-firefox
+)
+echo 'installing browser related packages...'
+sudo pacman --noconfirm --needed -S ${browser[@]}
 
 
 ########################################
@@ -90,19 +95,21 @@ cd /home/$username/.dotfiles
 stow *
 
 ########################################
-# zsh
+# terminal
 ########################################
 
 echo 'zsh...'
-sudo pacman --noconfirm --needed -S zsh
+terminal=(
+    zsh
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    z
+    diff-so-fancy
+    fzf
+)
+sudo pacman --noconfirm --needed -S ${terminal[@]}
+
 # chsh -s $(which zsh) # requires a restart to take action
-
-# clone oh-my-zsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git /home/$username/.oh-my-zsh
-
-# clone zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions /home/$username/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$username/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 
 ########################################
@@ -161,9 +168,9 @@ python_modules=(
 pip install --user ${python_modules[@]}
 
 echo "installing ODL from github..."
-git clone https://github.com/odlgroup/odl.git /home/$username/.local/lib/python3.7/site-packages/odl
-cd /home/$username/.local/lib/python3.7/site-packages/odl
-pip install --user -e .
+# git clone https://github.com/odlgroup/odl.git /home/$username/.local/lib/python3.7/site-packages/odl
+# cd /home/$username/.local/lib/python3.7/site-packages/odl
+# pip install --user -e .
 
 # ## polybar dependency
 # pip install --user xorg-xcb-proto
@@ -175,8 +182,6 @@ pip install --user -e .
 ########################################
 echo "vim setup..."
 
-# installing YouCompleteMe
-python /home/$username/.vim/bundle/YouCompleteMe/install.py
 
 
 ########################################
@@ -245,6 +250,7 @@ mail=(
     mpv
     msmtp
     w3m
+    abook
 )
 sudo pacman -S --noconfirm --needed ${mail[@]}
 
@@ -274,17 +280,11 @@ cd /home/$username/
 rm -rf yay
 
 AUR_packages=(
-    browserpass
     rstudio-desktop-bin
     littler                   # cmdline pip for R
     rambox-bin                # messaging
-    telegram-cli-git
     dropbox
 )
 echo 'installing AUR packages..'
 yay --nodiffmenu --noeditmenu --noconfirm -S ${AUR_packages[@]}
 
-# sudo pacman -S neovim
-# cd /home/$username/.config/nvim/autoload/plug.ivm/YouCompleteMe
-# git submodule update --init --recursive
-# python install.py
