@@ -144,7 +144,12 @@ cd /home/$username/
 # python
 ########################################
 echo "python setup..."
-sudo pacman --noconfirm --needed -S python-pip
+python=(
+    python-pip
+    pyenv               # to install other python versions
+)
+
+sudo pacman --noconfirm --needed -S ${python[@]}
 
 ## miniconda
 # wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
@@ -182,6 +187,7 @@ echo "installing ODL from github..."
 ########################################
 echo "vim setup..."
 
+sudo pacman --noconfirm --needed -S nvim
 
 
 ########################################
