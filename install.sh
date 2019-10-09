@@ -66,7 +66,7 @@ mkdir -p /mnt/home
 mount /dev/sda4 /mnt/home
 
 # pacstrap
-pacstrap /mnt base base-devel gvim
+pacstrap /mnt base base-devel gvim linux vim
 
 # -U means use uuID
 genfstab -U /mnt >> /mnt/etc/fstab
