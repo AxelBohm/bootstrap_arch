@@ -116,27 +116,28 @@ sudo pacman --noconfirm --needed -S ${terminal[@]}
 # suckless
 ########################################
 
-echo "compile st..."
+echo "compile suckless utilities"
+# dependency for st
 # should already be installed but for some reason I was missing this at some point
 sudo pacman --noconfirm --needed -S libX11
-git clone https://github.com/AxelBohm/st.git /home/$username/src/st
-cd /home/$username/src/st
-sudo make clean install
-cd /home/$username
 
-echo "compile dwm..."
-git clone https://github.com/AxelBohm/dwm.git /home/$username/src/dwm
-cd /home/$username/src/dwm
-sudo make clean install
-
-echo "compile slock..."
-git clone https://github.com/AxelBohm/slock.git /home/$username/src/slock
-cd /home/$username/src/slock
-sudo make clean install
-
-echo "compile surf..."
+# dependency for surf
 sudo pacman --noconfirm --needed -S gcr
-git clone https://github.com/AxelBohm/surf.git /home/$username/src/surf
+
+make=(
+    st
+    dwm
+    slock
+    surf
+    sxiv
+)
+
+for util in ${make[@]}
+do
+    git clone https://github.com/AxelBohm/$util.git /home/$username/src/$util
+    cd /home/$username/src/$util
+    sudo make clean install
+done
 
 cd /home/$username/
 
