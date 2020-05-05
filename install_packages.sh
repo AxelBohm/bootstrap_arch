@@ -52,6 +52,7 @@ random_stuff=(
     neofetch
     ranger
     texlive-most
+    texlab              # latex lsp
     calibre             # ebook management
     compton
     spectacle           # screenshots
