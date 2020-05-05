@@ -4,7 +4,7 @@
 username=$(cat username.tmp)
 
 # just for safety
-cd /home/$username/
+cd /home/"$username"/
 
 ########################################
 # start installing
@@ -27,7 +27,7 @@ basic=(
     acpilight
 )
 echo 'installing basics...'
-sudo pacman --noconfirm --needed -S ${basic[@]}
+sudo pacman --noconfirm --needed -S "${basic[@]}"
 
 # sometimes the arrays break if a package is no longer available and then nothing is installed
 # however, git is super important and therefore get's its own command
@@ -44,7 +44,7 @@ xorg=(
     xclip
 )
 echo 'installing X...'
-sudo pacman --noconfirm --needed -S ${xorg[@]}
+sudo pacman --noconfirm --needed -S "${xorg[@]}"
 
 
 random_stuff=(
@@ -59,7 +59,7 @@ random_stuff=(
     avrdude             # for flashing atreus
 )
 echo 'installing misc packages...'
-sudo pacman --noconfirm --needed -S ${random_stuff[@]}
+sudo pacman --noconfirm --needed -S "${random_stuff[@]}"
 
 
 zathura=(
@@ -68,7 +68,7 @@ zathura=(
     xdotool              # vimtex + zathura
 )
 echo 'installing zatharu...'
-sudo pacman --noconfirm --needed -S ${zathura[@]}
+sudo pacman --noconfirm --needed -S "${zathura[@]}"
 
 browser=(
     firefox
@@ -76,7 +76,7 @@ browser=(
     browserpass-firefox
 )
 echo 'installing browser related packages...'
-sudo pacman --noconfirm --needed -S ${browser[@]}
+sudo pacman --noconfirm --needed -S "${browser[@]}"
 
 
 ########################################
@@ -85,13 +85,13 @@ sudo pacman --noconfirm --needed -S ${browser[@]}
 echo "setting up dotfiles..."
 
 ## clone dotfile repo
-git clone https://github.com/AxelBohm/dotfiles /home/$username/.dotfiles
+git clone https://github.com/AxelBohm/dotfiles /home/"$username"/.dotfiles
 
 ## for symlink management
 sudo pacman --noconfirm --needed -S stow
 
 ### stow all the directories
-cd /home/$username/.dotfiles
+cd /home/"$username"/.dotfiles
 stow *
 
 ########################################
@@ -150,7 +150,7 @@ python=(
     pyenv               # to install other python versions
 )
 
-sudo pacman --noconfirm --needed -S ${python[@]}
+sudo pacman --noconfirm --needed -S "${python[@]}"
 
 ## miniconda
 # wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda.sh
@@ -171,7 +171,7 @@ python_modules=(
     pipenv
     vim-vint            # vimscript linting
 )
-pip install --user ${python_modules[@]}
+pip install --user "${python_modules[@]}"
 
 echo "installing ODL from github..."
 # git clone https://github.com/odlgroup/odl.git /home/$username/.local/lib/python3.7/site-packages/odl
@@ -247,7 +247,7 @@ music=(
     ncmpcpp
     mpc
 )
-sudo pacman -S --noconfirm --needed ${music[@]}
+sudo pacman -S --noconfirm --needed "${music[@]}"
 
 # mail
 mail=(
@@ -259,7 +259,7 @@ mail=(
     w3m
     abook
 )
-sudo pacman -S --noconfirm --needed ${mail[@]}
+sudo pacman -S --noconfirm --needed "${mail[@]}"
 
 # rss
 sudo pacman -S --noconfirm --needed newsboat
@@ -293,5 +293,5 @@ AUR_packages=(
     dropbox
 )
 echo 'installing AUR packages..'
-yay --nodiffmenu --noeditmenu --noconfirm -S ${AUR_packages[@]}
+yay --nodiffmenu --noeditmenu --noconfirm -S "${AUR_packages[@]}"
 
