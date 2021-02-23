@@ -104,11 +104,12 @@ terminal=(
     zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
-    z
-    diff-so-fancy
+    z                           # fuzzy folder switching
+    diff-so-fancy               # fancy git diff
     fzf
+    bat                         # syntzx highlighted preview
 )
-sudo pacman --noconfirm --needed -S ${terminal[@]}
+sudo pacman --noconfirm --needed -S "${terminal[@]}"
 
 # chsh -s $(which zsh) # requires a restart to take action
 
